@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "webpack:dev:client": "webpack --mode=development --config webpack.client.js --watch",
-    "webpack:dev:server": "webpack --mode=development --config webpack.server.js --watch",
+    "webpack:dev:server": "node $NODE_DEBUG_OPTION ./node_modules/webpack/bin/webpack.js --mode=development --config webpack.server.js --watch",
     "webpack:dev:start": "nodemon --watch build --exec node build/server.bundle.js",
     "dev": "npm-run-all --parallel webpack:dev:*"
   },
@@ -19,9 +19,11 @@
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-helmet": "^5.2.0",
+    "react-router": "latest",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
+    "@types/react-helmet": "^5.0.7",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",

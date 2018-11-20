@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import {Helmet} from 'react-helmet'
 import {StaticRouter} from 'react-router'
-import App from '../src/app'
+import App,{css} from '../src/app'
 import html from './template'
 
 const app = express()
@@ -15,13 +15,14 @@ app.use(bodyParser.json())
 app.use(express.static('build/public'))
 
 app.get('*', (req, res) => {
-  
   const content = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url}>
+    <StaticRouter location={req.url} context={{}}>
       <App />
     </StaticRouter>
-  )
-  res.send(html(Helmet.renderStatic(), content))
+  ),
+    helmet = Helmet.renderStatic();
+  console.log('end');
+  res.send(html(helmet, css, content))
 })
 
 app.listen(PORT, () => {
