@@ -1,37 +1,17 @@
 const path = require('path')
 const webpackNodeExternals = require('webpack-node-externals')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const merge = require('webpack-merge')
+const base = require('./config/base.config')
 
-module.exports = {
+module.exports = merge(base,{
   target: 'node',
-  entry: './server.js',
+  entry: './server/index.js',
   output: {
     filename: 'server.bundle.js',
     path: path.resolve(__dirname, 'build'),
     publicPath: '/build'
   },
-  mode: 'production',
-  module: {
-    rules: [
-      { 
-        test: /\.js$/, 
-        loader: 'babel-loader',
-        exclude: '/node_modules/',
-        options: {
-          presets: [
-            'react', 
-            'es2015',
-            'stage-0', 
-            [
-              'env', 
-              {
-                target: {browser: ['last 2 versions']}
-              }
-            ]
-          ]
-        }
-      },
-
-    ]
-  },
-  externals: [webpackNodeExternals()]
-}
+  externals: [webpackNodeExternals()],
+  plugins: []
+})

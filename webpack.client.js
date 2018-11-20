@@ -1,6 +1,9 @@
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const merge = require('webpack-merge')
+const base = require('./config/base.config')
 
-module.exports = {
+module.exports = merge(base,{
   target: 'node',
   entry: './src/client.js',
   output: {
@@ -8,28 +11,5 @@ module.exports = {
     path: path.resolve(__dirname, 'build/public'),
     publicPath: '/build/public'
   },
-  mode: 'development',
-  module: {
-    rules: [
-      { 
-        test: /\.js$/, 
-        loader: 'babel-loader',
-        exclude: '/node_modules/',
-        options: {
-          presets: [
-            'react', 
-            'es2015',
-            'stage-0', 
-            [
-              'env', 
-              {
-                target: {browser: ['last 2 versions']}
-              }
-            ]
-          ]
-        }
-      },
-
-    ]
-  }
-}
+  plugins: []
+})

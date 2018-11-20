@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import {Helmet} from 'react-helmet'
+import styles from './HomePage.module.scss'
 
 class Home extends Component {
 
@@ -19,7 +20,7 @@ class Home extends Component {
     return (
       <div className={'home'}>
       {this.head()}
-        <h1>My Home Page</h1>
+        <h1 className={styles.highlight}>My Home Page</h1>
         <div className={'content'}>
           <p>Some content</p>
           <button onClick={() => {this.print()}}> Click console</button>

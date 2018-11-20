@@ -1,14 +1,15 @@
 import React, { Component } from "react"
-import {Switch, Route} from 'react-router-dom'
-import Home from "./pages/home"
+import Header from "./components/partials/Header"
+import Content from "./components/partials/Content"
+import Footer from "./components/partials/Footer"
 
 class App extends Component {
   render() {
     return (
       <div className={'app'}>
-        <Switch>
-          <Route path="/home" render={props => <Home {...props} />} />
-        </Switch>
+        <Header />
+        <Content />
+        <Footer />
       </div>
     )
   }
