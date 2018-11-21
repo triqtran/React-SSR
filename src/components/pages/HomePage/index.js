@@ -1,32 +1,21 @@
 import React, { Component } from "react"
-import {Helmet} from 'react-helmet'
-import styles from './HomePage.module.scss'
+import style from './HomePage.module.scss'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
+import metaData from "../../../hoc/metaData"
 
-@withStyles(styles)
+@metaData("https://www.reddit.com/r/reactjs.json")
+@withStyles(style)
 class Home extends Component {
 
   print() {
     console.log("JS is running!")
   }
 
-  head() {
-    return (
-      <Helmet>
-        <title>Home Page</title>
-      </Helmet>
-    )
-  }
-
   render() {
     return (
-      <div className={'home'}>
-      {this.head()}
-        <h1 className={styles.highlight}>My Home Page</h1>
-        <div className={'content'}>
-          <p className={styles.highlightGreen}>Some content</p>
-          <button onClick={() => {this.print()}}> Click console</button>
-        </div>
+      <div className={style.home}>
+        {this.props.metaData}
+        <h1>Home Page</h1>
       </div>
     )
   }

@@ -25,6 +25,11 @@ app.get('*', (req, res) => {
   res.send(html(helmet, css, content))
 })
 
+app.get('/api/meta/home', (req, res) => {
+  res.setHeader('Content-type', 'json')
+  return res.json('{title: "Home Meta Data Test SSR"}')
+})
+
 app.listen(PORT, () => {
   console.log("Server is running with port", PORT)
 })
